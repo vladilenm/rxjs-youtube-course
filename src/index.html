@@ -7,11 +7,26 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <title>RxJS Полный курс</title>
+  <style>
+    canvas {
+      width: 100%;
+      height: 200px;
+      border: 2px solid #ccc;
+    }
+  </style>
 </head>
 <body style="padding-top: 3rem;">
 
 <div class="container">
+  <canvas></canvas>
 
+  <div class="input-field">
+    <input type="range" min="1" max="4" value="2" id="range">
+  </div>
+
+  <div class="input-field">
+    <input type="color" id="color">
+  </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
