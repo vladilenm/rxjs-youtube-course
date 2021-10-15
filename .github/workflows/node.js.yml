@@ -28,6 +28,4 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm install npm@8.1.0
-    - run: npm run webpack --mode production
-    - run: npm run webpack-dev-server --mode development
-    
+    - run: npm run
