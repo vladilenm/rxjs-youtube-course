@@ -26,8 +26,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
     - run: npm install npm@8.1.0
     - run: npm run
     - run: npm fund
-    - run: npm npm audit fix
+    - run: npm audit fix --force
+    - run: npm ci
+
