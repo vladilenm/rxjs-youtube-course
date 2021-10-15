@@ -29,3 +29,5 @@ jobs:
     - run: npm ci
     - run: npm install npm@8.1.0
     - run: npm run
+    - run: npm fund
+    - run: npm npm audit fix
