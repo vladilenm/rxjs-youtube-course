@@ -27,6 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
+    - run: npm install npm@8.0.0
     - run: npm run build --if-present
     - run: npm run
     - run: npm run webpack --mode production
