@@ -21,6 +21,8 @@ const stream$ = fromEvent(search, 'input')
         distinctUntilChanged(),
         //Add operator for side effect. This operator is cleaner for other operators. Other can be without side-effects
         tap(() =>  result.innerHTML = ''), //Cool for debug tap(console.log)
+        //filtering for empty values
+        filter(value => value.trim()),
         //Create new observable from exist. INPUT STRING to AJAX RESPONSE
         switchMap(v => ajax.getJSON(url + v)
             //Add error handler for ajax request
