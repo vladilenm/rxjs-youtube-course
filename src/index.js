@@ -6,6 +6,7 @@ const url = 'https://api.github.com/search/users?q=';
 
 //Get input element from index.html
 const search = document.getElementById('search');
+const result = document.getElementById('result');
 
 //create observable from input event
 const stream$ = fromEvent(search, 'input')
@@ -26,6 +27,17 @@ const stream$ = fromEvent(search, 'input')
         mergeMap(items => items)
     );
 
-stream$.subscribe(value => {
-    console.log(value);
+stream$.subscribe(user => {
+    console.log(user);
+    const html = `
+            <div class="card">
+                <div class="card-image">
+                    <img src="${user.avatar_url}"/>
+                    <span class="card-tittle">${user.login}</span>
+                </div>
+                <div class="card-action">
+                    <a href="${user.html_url}" target="_blank">OPEN GITHUB</a>
+                </div>
+            </div>`
+    result.insertAdjacentHTML('beforeend', html);
 })
