@@ -1,5 +1,5 @@
-import {fromEvent, mergeMap} from 'rxjs';
-import {map, distinctUntilChanged, debounceTime, switchMap, tap} from 'rxjs/operators';
+import {EMPTY, fromEvent, mergeMap} from 'rxjs';
+import {catchError, map, distinctUntilChanged, debounceTime, switchMap, tap, filter} from 'rxjs/operators';
 import {ajax} from 'rxjs/ajax';
 
 const url = 'https://api.github.com/search/users?q=';
@@ -22,7 +22,12 @@ const stream$ = fromEvent(search, 'input')
         //Add operator for side effect. This operator is cleaner for other operators. Other can be without side-effects
         tap(() =>  result.innerHTML = ''), //Cool for debug tap(console.log)
         //Create new observable from exist. INPUT STRING to AJAX RESPONSE
-        switchMap(v => ajax.getJSON(url + v)),
+        switchMap(v => ajax.getJSON(url + v)
+            //Add error handler for ajax request
+            .pipe(
+                catchError(err => EMPTY)
+            )
+        ),
         //Get only necessary data from response
         map(response => response.items),
         //Create by one subscribe for every item. Every item is separate observable now
